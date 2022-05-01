@@ -27,6 +27,7 @@ public class User extends BaseEntity<Integer> {
     private String password;
     private Date date;
     private Double balance;
+    @Enumerated(EnumType.STRING)
     private UserStatus status;
 
     @Transient

@@ -4,6 +4,7 @@ import lombok.*;
 import model.entity.base.User;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -19,11 +20,15 @@ public class Professional extends User {
     private String city;
     @Column(nullable = false)
     private byte[] image;
+    private Long lowestPrice;
 
     @JoinTable(name = "professional_service",
             joinColumns = {@JoinColumn(name = "professional_id")},
             inverseJoinColumns = {@JoinColumn(name = "service_id")})
     @ManyToMany
     @ToString.Exclude
-    private Set<Service> services;
+    private Set<Service> services = new HashSet<>();
+
+    @ManyToOne
+    private Order order;
 }
