@@ -3,7 +3,6 @@ package model.entity;
 import lombok.*;
 import model.entity.base.BaseEntity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 

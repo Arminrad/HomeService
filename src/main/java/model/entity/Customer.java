@@ -1,7 +1,6 @@
 package model.entity;
 
 import lombok.*;
-import model.entity.base.BaseEntity;
 import model.entity.base.User;
 
 import javax.persistence.DiscriminatorValue;

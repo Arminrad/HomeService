@@ -7,6 +7,7 @@ import model.enumeration.OrderStatus;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -17,9 +18,9 @@ import java.util.Date;
 @ToString
 @Entity
 public class Order extends BaseEntity<Integer> {
-    private Long orderProposedPrice;
+    private Long proposedOrderPrice;
     private String description;
-    private Date registrationDate;
+    private Date orderRegistrationDate;
     private Date preferredDueDate;
 
     @Enumerated(EnumType.STRING)
@@ -29,4 +30,6 @@ public class Order extends BaseEntity<Integer> {
     private String street;
     private String alley;
     private String buildingNo;
+    @ManyToOne
+    private Customer customer;
 }
