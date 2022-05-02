@@ -4,10 +4,7 @@ import lombok.*;
 import model.entity.base.BaseEntity;
 import model.enumeration.OrderStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -17,6 +14,7 @@ import java.util.Date;
 @Builder
 @ToString
 @Entity
+@Table(name = "orders")
 public class Order extends BaseEntity<Integer> {
     private Long proposedOrderPrice;
     private String description;
@@ -32,4 +30,6 @@ public class Order extends BaseEntity<Integer> {
     private String buildingNo;
     @ManyToOne
     private Customer customer;
+    @ManyToOne
+    private Service service;
 }

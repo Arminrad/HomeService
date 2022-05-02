@@ -13,7 +13,7 @@ import java.util.Date;
 @ToString
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user-type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "users")
 public class User extends BaseEntity<Integer> {
 

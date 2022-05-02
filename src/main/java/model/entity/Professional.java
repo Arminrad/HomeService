@@ -28,7 +28,4 @@ public class Professional extends User {
     @ManyToMany
     @ToString.Exclude
     private Set<Service> services = new HashSet<>();
-
-    @ManyToOne
-    private Order order;
 }

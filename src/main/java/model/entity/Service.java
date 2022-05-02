@@ -17,6 +17,7 @@ import java.util.Set;
 @ToString
 @Entity
 public class Service extends BaseEntity<Integer> {
+
     private String serviceName;
 
     @OneToOne
