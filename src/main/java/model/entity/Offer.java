@@ -1,10 +1,21 @@
 package model.entity;
 
+import lombok.*;
+import model.entity.base.BaseEntity;
+
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.sql.Time;
 import java.util.Date;
 
-public class Offer {
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@ToString
+@Entity
+public class Offer extends BaseEntity<Integer> {
     private Date offerRegistrationDate;
     private Long proposedOfferPrice;
     private Time serviceDuration;
