@@ -1,7 +1,7 @@
 package connection;
 
-import model.entity.*;
-import model.entity.base.User;
+import entities.*;
+import entities.base.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

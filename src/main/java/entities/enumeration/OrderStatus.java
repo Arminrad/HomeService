@@ -1,4 +1,4 @@
-package model.enumeration;
+package entities.enumeration;
 
 public enum OrderStatus {
     WAITING_FOR_PROFESSIONAL_OFFER,

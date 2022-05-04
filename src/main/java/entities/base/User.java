@@ -1,7 +1,7 @@
-package model.entity.base;
+package entities.base;
 
 import lombok.*;
-import model.enumeration.UserStatus;
+import entities.enumeration.UserStatus;
 
 import javax.persistence.*;
 import java.util.Date;

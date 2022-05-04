@@ -1,4 +1,4 @@
-package model.entity.base;
+package entities.base;
 
 import lombok.Getter;
 import lombok.Setter;

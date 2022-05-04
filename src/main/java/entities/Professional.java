@@ -1,7 +1,7 @@
-package model.entity;
+package entities;
 
 import lombok.*;
-import model.entity.base.User;
+import entities.base.User;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -28,4 +28,12 @@ public class Professional extends User {
     @ManyToMany
     @ToString.Exclude
     private Set<Service> services = new HashSet<>();
+
+    @OneToMany(mappedBy = "professional", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private Set<Comment> comments;
+
+    @OneToMany(mappedBy = "professional", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private Set<Offer> offers;
 }

@@ -1,11 +1,9 @@
-package model.entity;
+package entities;
 
 import lombok.*;
-import model.entity.base.BaseEntity;
+import entities.base.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,4 +24,8 @@ public class Service extends BaseEntity<Integer> {
     @ManyToMany(mappedBy = "services")
     @ToString.Exclude
     private Set<Professional> professionals = new HashSet<>();
+
+    @OneToMany(mappedBy = "service", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private Set<Order> orders;
 }

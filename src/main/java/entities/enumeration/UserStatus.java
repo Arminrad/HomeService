@@ -1,4 +1,4 @@
-package model.enumeration;
+package entities.enumeration;
 
 public enum UserStatus {
     NEW,

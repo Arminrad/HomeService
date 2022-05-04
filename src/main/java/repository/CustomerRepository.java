@@ -1,4 +1,7 @@
 package repository;
 
-public interface CustomerRepository {
+import entities.Customer;
+import repository.base.GenericRepository;
+
+public interface CustomerRepository extends GenericRepository<Customer, Integer> {
 }

@@ -1,7 +1,7 @@
-package model.entity;
+package entities;
 
 import lombok.*;
-import model.entity.base.BaseEntity;
+import entities.base.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;

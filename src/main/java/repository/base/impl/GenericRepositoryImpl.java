@@ -20,7 +20,7 @@ public class GenericRepositoryImpl<T, ID extends Serializable> implements Generi
     }
 
     @Override
-    public T add(T t) {
+    public T save(T t) {
         var session = sessionFactory.getCurrentSession();
         try {
             session.save(t);

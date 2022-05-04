@@ -1,11 +1,12 @@
-package model.entity;
+package entities;
 
 import lombok.*;
-import model.entity.base.BaseEntity;
-import model.enumeration.OrderStatus;
+import entities.base.BaseEntity;
+import entities.enumeration.OrderStatus;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,4 +33,8 @@ public class Order extends BaseEntity<Integer> {
     private Customer customer;
     @ManyToOne
     private Service service;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private Set<Offer> offers;
 }
