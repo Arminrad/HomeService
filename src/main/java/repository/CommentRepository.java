@@ -1,7 +1,7 @@
 package repository;
 
 import entities.Comment;
-import repository.base.GenericRepository;
+import repository.base.BaseRepository;
 
-public interface CommentRepository extends GenericRepository<Comment, Integer> {
+public interface CommentRepository extends BaseRepository<Comment, Integer> {
 }

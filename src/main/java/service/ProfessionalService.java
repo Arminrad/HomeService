@@ -1,4 +1,7 @@
 package service;
 
-public interface ProfessionalService {
+import entities.Professional;
+import service.base.BaseService;
+
+public interface ProfessionalService extends BaseService<Professional, Integer> {
 }

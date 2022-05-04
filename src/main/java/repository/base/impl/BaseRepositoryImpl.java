@@ -2,21 +2,21 @@ package repository.base.impl;
 
 import connection.SessionFactorySingleton;
 import org.hibernate.SessionFactory;
-import repository.base.GenericRepository;
+import repository.base.BaseRepository;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class GenericRepositoryImpl<T, ID extends Serializable> implements GenericRepository<T, ID> {
+public class BaseRepositoryImpl<T, ID extends Serializable> implements BaseRepository<T, ID> {
 
     private SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
     private Class<T> tClass;
 
-    public GenericRepositoryImpl(Class<T> tClass) {
+    public BaseRepositoryImpl(Class<T> tClass) {
         this.tClass = tClass;
     }
 
-    public GenericRepositoryImpl() {
+    public BaseRepositoryImpl() {
     }
 
     @Override

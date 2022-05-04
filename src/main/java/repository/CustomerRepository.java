@@ -1,7 +1,7 @@
 package repository;
 
 import entities.Customer;
-import repository.base.GenericRepository;
+import repository.base.BaseRepository;
 
-public interface CustomerRepository extends GenericRepository<Customer, Integer> {
+public interface CustomerRepository extends BaseRepository<Customer, Integer> {
 }

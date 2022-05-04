@@ -1,7 +1,7 @@
 package repository;
 
 import entities.Professional;
-import repository.base.GenericRepository;
+import repository.base.BaseRepository;
 
-public interface ProfessionalRepository extends GenericRepository<Professional, Integer> {
+public interface ProfessionalRepository extends BaseRepository<Professional, Integer> {
 }

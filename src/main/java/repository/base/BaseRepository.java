@@ -2,7 +2,7 @@ package repository.base;
 
 import java.util.List;
 
-public interface GenericRepository<T, ID> {
+public interface BaseRepository<T, ID> {
     T save(T t);
     T update(T t);
     void delete(T t);

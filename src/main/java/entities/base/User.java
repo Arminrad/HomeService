@@ -1,5 +1,6 @@
 package entities.base;
 
+import entities.enumeration.UserType;
 import lombok.*;
 import entities.enumeration.UserStatus;
 
@@ -29,6 +30,8 @@ public class User extends BaseEntity<Integer> {
     private Double balance;
     @Enumerated(EnumType.STRING)
     private UserStatus status;
+    @Enumerated(EnumType.STRING)
+    private UserType type;
 
     @Transient
     public String getDiscriminatorValue() {

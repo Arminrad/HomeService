@@ -1,4 +1,7 @@
 package service;
 
-public interface CommentService {
+import entities.Comment;
+import service.base.BaseService;
+
+public interface CommentService extends BaseService<Comment, Integer> {
 }

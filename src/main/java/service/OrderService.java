@@ -1,4 +1,7 @@
 package service;
 
-public interface OrderService {
+import entities.Order;
+import service.base.BaseService;
+
+public interface OrderService extends BaseService<Order, Integer> {
 }
