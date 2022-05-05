@@ -34,46 +34,8 @@ public class Utility {
     private Double price, bidPriceOrder, balance;
 
 
-    public void mainMenu() {
-        System.out.println("--------------------*** Welcome to HomeService Company ***--------------------");
-        System.out.println("1.SignIn \n" +
-                "2.Professional SignUp \n" +
-                "3.Customer SignUp \n" +
-                "4.Service Order ");
-        Integer choice = scanner.nextInt();
-        switch (choice) {
-            case 1:
-                //signIn();
-                break;
-            case 2:
-                professionalSignUp();
-                break;
-            case 3:
-                //customerSignUp();
-                break;
-            case 4:
-                //serviceOrder();
-                break;
-        }
-    }
 
-    public Professional professionalSignUp() {
-        String firstName = setFirstName();
-        String lastName = setLastName();
-        String email = setEmail();
-        String password = setPassword();
-        Date signUpDate = new Date(System.currentTimeMillis());
-        Double balance = 0.;
-        UserStatus status = UserStatus.NEW;
-        UserType type = UserType.Professional;
-        String city = setCityName();
-        byte[] image = setImage();
-        String nationalCode = setNationalCode();
-        Set<Service> services = setService();
-        Professional professional = new Professional(firstName, lastName, email, password, balance, status, type, city, image, nationalCode, )
-        return null;
 
-    }
 
 
     public String setFirstName() {
