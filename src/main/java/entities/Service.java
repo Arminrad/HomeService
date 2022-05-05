@@ -27,7 +27,7 @@ public class Service extends BaseEntity<Integer> {
     @ToString.Exclude
     private Set<Professional> professionals = new HashSet<>();
 
-    @OneToMany(mappedBy = "service", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "service")
     @ToString.Exclude
     private Set<Order> orders;
 }

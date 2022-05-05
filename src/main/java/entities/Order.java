@@ -34,7 +34,7 @@ public class Order extends BaseEntity<Integer> {
     @ManyToOne
     private Service service;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order")
     @ToString.Exclude
     private Set<Offer> offers;
 }

@@ -19,11 +19,11 @@ import java.util.Set;
 @DiscriminatorValue("customer")
 public class Customer extends User {
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer")
     @ToString.Exclude
     private Set<Comment> comments;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer")
     @ToString.Exclude
     private Set<Order> orders;
 
