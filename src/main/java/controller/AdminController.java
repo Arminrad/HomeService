@@ -12,10 +12,14 @@ public class AdminController {
 
 
     public Service addNewService() {
-
+        System.out.println("What is the service category id based on the list Below ");
+        showAllServicesWithCategoryId();
+        System.out.println("Enter service name: ");
+        String serviceName = Gizmo.scanner.nextLine();
     }
 
-    public List<Service> showAllServicesWithCategoryId() {
+    public void showAllServicesWithCategoryId() {
+        System.out.println(serviceService.findAll(Service.class).toString());
 
     }
 }
