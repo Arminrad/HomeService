@@ -15,9 +15,9 @@ public class Utility {
     private Scanner scanner = new Scanner(System.in);
     private String firstName,lastName, nationalCode,password,categoryName,
             email,cityName,superCategoryName,answer,description,address;
-    private InvalidName invalidName = new InvalidName();
-    private InvalidNationalCode invalidNationalId = new InvalidNationalCode();
-    private InvalidPassword invalidPassword = new InvalidPassword();
+    private InvalidNameException invalidNameException = new InvalidNameException();
+    private InvalidNationalCodeException invalidNationalId = new InvalidNationalCodeException();
+    private InvalidPasswordException invalidPasswordException = new InvalidPasswordException();
     private CustomerServiceImpl customerService = new CustomerServiceImpl();
     private ProfessionalServiceImpl expertService = new ProfessionalServiceImpl();
     private ServiceServiceImpl serviceService = new ServiceServiceImpl();
@@ -34,7 +34,7 @@ public class Utility {
                 firstName = scanner.nextLine();
                 checkName(firstName);
                 return firstName;
-            }catch (InvalidName except){
+            }catch (InvalidNameException except){
                 System.out.println(except.getMessage());
             }
         }
@@ -47,7 +47,7 @@ public class Utility {
                 lastName = scanner.nextLine();
                 checkName(lastName);
                 return lastName;
-            }catch (InvalidName except){
+            }catch (InvalidNameException except){
                 System.out.println(except.getMessage());
             }
         }
@@ -60,7 +60,7 @@ public class Utility {
                 cityName = scanner.nextLine();
                 checkName(cityName);
                 return cityName;
-            }catch (InvalidName except){
+            }catch (InvalidNameException except){
                 System.out.println(except.getMessage());
             }
         }
@@ -74,7 +74,7 @@ public class Utility {
                 cityName = scanner.nextLine();
                 checkName(cityName);
                 return cityName;
-            }catch (InvalidName except){
+            }catch (InvalidNameException except){
                 System.out.println(except.getMessage());
             }
         }
@@ -87,7 +87,7 @@ public class Utility {
                 superCategoryName = scanner.nextLine();
                 checkName(superCategoryName);
                 return superCategoryName;
-            }catch (InvalidName except){
+            }catch (InvalidNameException except){
                 System.out.println(except.getMessage());
             }
         }
@@ -100,7 +100,7 @@ public class Utility {
                 nationalCode = scanner.nextLine();
                 nationalCodeChecker(nationalCode);
                 return nationalCode;
-            }catch (InvalidNationalCode except){
+            }catch (InvalidNationalCodeException except){
                 System.out.println(except.getMessage());
             }
         }
@@ -113,7 +113,7 @@ public class Utility {
                 password = scanner.nextLine();
                 passwordCheck(password);
                 return password;
-            } catch (InvalidPassword except) {
+            } catch (InvalidPasswordException except) {
                 System.out.println(except.getMessage());
             }
         }
@@ -126,7 +126,7 @@ public class Utility {
                 categoryName = scanner.nextLine();
                 checkName(categoryName);
                 return categoryName;
-            }catch (InvalidName except){
+            }catch (InvalidNameException except){
                 System.out.println(except.getMessage());
             }
         }
@@ -138,7 +138,7 @@ public class Utility {
             try {
                 description = scanner.nextLine();
                 return description;
-            }catch (InvalidName except){
+            }catch (InvalidNameException except){
                 System.out.println(except.getMessage());
             }
         }
@@ -151,7 +151,7 @@ public class Utility {
                 address = scanner.nextLine();
                 checkDescription(address);
                 return address;
-            }catch (InvalidName except){
+            }catch (InvalidNameException except){
                 System.out.println(except.getMessage());
             }
         }
@@ -159,21 +159,21 @@ public class Utility {
 
     public void checkName(String name){
         if(name.length() < 3 )
-            throw new InvalidName("name should be more than 2 character!");
+            throw new InvalidNameException("name should be more than 2 character!");
         for (Character ch:name.toCharArray()) {
             if(Character.isDigit(ch))
-                throw new InvalidName("name can not have number!");
+                throw new InvalidNameException("name can not have number!");
         }
         for (Character ch:name.toCharArray()) {
             if(!Character.isAlphabetic(ch))
-                throw new InvalidName("name can't have Sign(!,@,#,%,...)");
+                throw new InvalidNameException("name can't have Sign(!,@,#,%,...)");
         }
     }
 
     public void checkDescription(String description){
         for (Character ch:description.toCharArray()) {
             if(!Character.isAlphabetic(ch))
-                throw new InvalidName("Description can't have Sign(!,@,#,%,...)");
+                throw new InvalidNameException("Description can't have Sign(!,@,#,%,...)");
 
         }
     }
@@ -187,27 +187,27 @@ public class Utility {
 
     public void nationalCodeChecker(String nationalCode){
         if(nationalCode.length() > 10 )
-            throw new InvalidNationalCode("national code can't more than ten number!");
+            throw new InvalidNationalCodeException("national code can't more than ten number!");
         if(nationalCode.equals(""))
-            throw new InvalidNationalCode("dont enter space!");
+            throw new InvalidNationalCodeException("dont enter space!");
         for (Character ch:nationalCode.toCharArray()) {
             if(!Character.isDigit(ch))
-                throw new InvalidNationalCode("national code should be just number!");
+                throw new InvalidNationalCodeException("national code should be just number!");
         }
     }
 
     public void idChecker(Long id){
         if(String.valueOf(id).length() > 3 )
-            throw new InvalidNationalCode("ID length can not be more than three numbers!");
+            throw new InvalidNationalCodeException("ID length can not be more than three numbers!");
         for (Character ch:String.valueOf(id).toCharArray()) {
             if(!Character.isDigit(ch))
-                throw new InvalidNationalCode("ID should be just number!");
+                throw new InvalidNationalCodeException("ID should be just number!");
         }
     }
 
     public void passwordCheck(String password){
         if(password.length() < 3 )
-            throw new InvalidPassword("password should be more than 2 ");
+            throw new InvalidPasswordException("password should be more than 2 ");
         char[] passwordArray = password.toCharArray();
         char[] signArray =  new char[] {'!','@','#','$','%','^','&','*','(',')','-','+','=','.',',','>','<','?','/','|',':',';'};
         int lowerCase = 0,upperCase = 0,sign = 0,digit = 0;
@@ -225,7 +225,7 @@ public class Utility {
                 if(signArray[i] == passwordArray[j])
                     ++sign;
         if( (lowerCase == 0) || (upperCase == 0) || (sign == 0) || (digit == 0) )
-            throw new InvalidPassword("Password should have lowerCase + upperCase + sign + digit!");
+            throw new InvalidPasswordException("Password should have lowerCase + upperCase + sign + digit!");
     }
 
 
@@ -316,7 +316,7 @@ public class Utility {
                 answer = scanner.nextLine();
                 checkAnswer(answer);
                 break;
-            }catch (InvalidBoolean except){
+            }catch (InvalidBooleanException except){
                 System.out.println(except.getMessage());
             }
         }
@@ -359,7 +359,7 @@ public class Utility {
                 if (format.equals("png"))
                     return imagePath;
             } catch (Exception e) {
-                throw new InvalidImageFormat();
+                throw new InvalidImageFormatException();
             }
         }
     }
