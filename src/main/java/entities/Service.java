@@ -21,6 +21,8 @@ public class Service extends BaseEntity<Integer> {
     @OneToOne
     private Service parent;
 
+    private Long lowestPrice;
+
     @ManyToMany(mappedBy = "services")
     @ToString.Exclude
     private Set<Professional> professionals = new HashSet<>();

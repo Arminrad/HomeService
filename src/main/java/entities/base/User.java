@@ -26,7 +26,7 @@ public class User extends BaseEntity<Integer> {
     private String email;
     @Column(nullable = false)
     private String password;
-    private Date date;
+    private Date signUpDate;
     private Double balance;
     @Enumerated(EnumType.STRING)
     private UserStatus status;

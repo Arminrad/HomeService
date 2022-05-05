@@ -19,8 +19,8 @@ public class Professional extends User {
     @Column(nullable = false)
     private String city;
     @Column(nullable = false)
-    private byte[] image;
-    private Long lowestPrice;
+    private Byte[] image;
+    private String nationalCode;
 
     @JoinTable(name = "professional_service",
             joinColumns = {@JoinColumn(name = "professional_id")},
