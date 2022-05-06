@@ -13,4 +13,14 @@ public class ProfessionalServiceImpl extends BaseServiceImpl<Professional, Integ
     private SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
 
     private ProfessionalRepositoryImpl professionalRepository = new ProfessionalRepositoryImpl();
+
+    @Override
+    public Professional findByEmail(String email) {
+        var session = sessionFactory.getCurrentSession();
+        var transaction = session.getTransaction();
+        transaction.begin();
+        Professional professional = professionalRepository.findByEmail(email);
+        transaction.commit();
+        return professional;
+    }
 }

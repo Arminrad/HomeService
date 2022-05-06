@@ -1,9 +1,6 @@
 package controller;
 
-import entities.Professional;
 import entities.Service;
-import entities.enumeration.UserStatus;
-import entities.enumeration.UserType;
 import exception.*;
 import service.impl.CustomerServiceImpl;
 import service.impl.ProfessionalServiceImpl;
@@ -12,8 +9,7 @@ import service.impl.ServiceServiceImpl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
@@ -29,13 +25,6 @@ public class Utility {
     private CustomerServiceImpl customerService = new CustomerServiceImpl();
     private ProfessionalServiceImpl expertService = new ProfessionalServiceImpl();
     private ServiceServiceImpl serviceService = new ServiceServiceImpl();
-    private Integer id;
-    private Integer credit;
-    private Double price, bidPriceOrder, balance;
-
-
-
-
 
 
     public String setFirstName() {
@@ -166,21 +155,6 @@ public class Utility {
     }
 
 
-    public void checkDescription(String description) {
-        for (Character ch : description.toCharArray()) {
-            if (!Character.isAlphabetic(ch))
-                throw new InvalidNameException("Description can't have Sign(!,@,#,%,...)");
-
-        }
-    }
-
-    public String checkAnswer(String answer) {
-        if (String.valueOf(answer).equals("true") || String.valueOf(answer).equals("false"))
-            return answer;
-        else System.out.println("Just enter true or false!!!");
-        return null;
-    }
-
     public String regexAdder(String regex, String tag, String additionalInfo) {
         while (true) {
             System.out.print(tag + "(" + additionalInfo + "): ");
@@ -212,222 +186,45 @@ public class Utility {
     }
 
 
-
-
-    public String setService(){
-        while(true){
-            System.out.print("Select your service from the list below :");
-            try {
-                scanner.nextLine();
-                cityName = scanner.nextLine();
-                checkName(cityName);
-                return cityName;
-            }catch (InvalidNameException except){
-                System.out.println(except.getMessage());
-            }
-        }
-    }
-
-    public String setSuperCategoryName(){
-        while(true){
-            System.out.print("Enter super category name :");
-            try {
-                superCategoryName = scanner.nextLine();
-                checkName(superCategoryName);
-                return superCategoryName;
-            }catch (InvalidNameException except){
-                System.out.println(except.getMessage());
-            }
-        }
-    }
-
-
-
-    public String setCategoryName(){
-        while(true){
-            System.out.print("Enter category name:");
-            try {
-                categoryName = scanner.nextLine();
-                checkName(categoryName);
-                return categoryName;
-            }catch (InvalidNameException except){
-                System.out.println(except.getMessage());
-            }
-        }
-    }
-
-    public String setDescription(){
-        while(true){
-            System.out.print("Enter your description : ");
-            try {
-                description = scanner.nextLine();
-                return description;
-            }catch (InvalidNameException except){
-                System.out.println(except.getMessage());
-            }
-        }
-    }
-
-    public String setAddress(){
-        while(true){
-            System.out.print("Enter address : ");
-            try {
-                address = scanner.nextLine();
-                checkDescription(address);
-                return address;
-            }catch (InvalidNameException except){
-                System.out.println(except.getMessage());
-            }
-        }
-    }
-
-
-
-    public void idChecker(Long id){
-        if(String.valueOf(id).length() > 3 )
-            throw new InvalidNationalCodeException("ID length can not be more than three numbers!");
-        for (Character ch:String.valueOf(id).toCharArray()) {
-            if(!Character.isDigit(ch))
-                throw new InvalidNationalCodeException("ID should be just number!");
-        }
-    }
-
-
-    public Double setBalance(){
-        while(true){
-            System.out.print("Balance : ");
-            while (true) {
-                try {
-                    balance = scanner.nextDouble();
-                    scanner.nextLine();
-                    break;
-                } catch (Exception exception) {
-                    scanner.nextLine();
-                    System.out.print("Just number please : ");
-                }
-            }
-            if(balance < 0 ){
-                System.out.println("You must enter a price more than zero!");
-            }else
-                break;
-        }
-        return balance;
-    }
-
-    public Double setBasePrice(){
-        while(true){
-            System.out.print("Base price : ");
-            while (true) {
-                try {
-                    balance = scanner.nextDouble();
-                    scanner.nextLine();
-                    break;
-                } catch (Exception exception) {
-                    scanner.nextLine();
-                    System.out.print("Just number please : ");
-                }
-            }
-            if(balance < 0 ){
-                System.out.println("You must enter a price more than zero!");
-            }else
-                break;
-        }
-        return balance;
-    }
-
-    public Integer setCredit(){
-        System.out.print("Credit : ");
+    public Set<Service> setService() {
+        Set<Service> services = new HashSet<>();
         while (true) {
+            System.out.print("Select your services from the list below :");
+            showAllServicesWithCategoryId();
             try {
-                credit = scanner.nextInt();
-                scanner.nextLine();
-                break;
-            } catch (Exception exception) {
-                scanner.nextLine();
-                System.out.print("Just number please : ");
-            }
-        }
-        return credit;
-    }
-
-
-
-    public String setAnswer(){
-        while(true){
-            System.out.print("Is this person approved by you?(Enter true or false) : ");
-            try {
-                answer = scanner.nextLine();
-                checkAnswer(answer);
-                break;
-            }catch (InvalidBooleanException except){
+                Integer id = scanner.nextInt();
+                Service service = serviceService.findById(Service.class, id);
+                services.add(service);
+                System.out.println("Want to add another service? y/n");
+                String choice = scanner.nextLine();
+                if (choice == "n")
+                    return services;
+            } catch (InvalidNameException except) {
                 System.out.println(except.getMessage());
             }
         }
-        return answer;
     }
 
-    public Integer setId(){
-        while(true){
+    public void showAllServicesWithCategoryId() {
+        System.out.println(serviceService.findAll(Service.class).toString());
+
+    }
+
+
+
+
+
+    public Integer setId() {
+        while (true) {
             System.out.print("Enter id : ");
             try {
-                id = scanner.nextInt();
+                Integer id = scanner.nextInt();
                 scanner.nextLine();
                 return id;
-            }catch (InputMismatchException except){
+            } catch (InputMismatchException except) {
                 scanner.nextLine();
                 System.out.println("You just have to enter the number");
             }
         }
-    }
-
-    public Timestamp orderExecutionDate(){
-        while (true) {
-            System.out.print("Enter execution date (like this -> 2022-10-02 18:48:00) : ");
-            String text = scanner.nextLine();
-            try {
-                return Timestamp.valueOf(text);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-
-
-    public Service serviceExistence(){
-        while (true) {
-            try {
-                Integer serviceId = setId();
-                Service service = serviceService.findById(Service.class, serviceId);
-                if (service != null){
-                    return service;
-                }
-            } catch (Exception e) {
-                System.out.println("This service doesn't exists!!!");
-                break;
-            }
-        }
-        return null;
-    }
-
-    public Double setBidPriceOrder(){
-        while(true){
-            System.out.print("Bid price order : ");
-            while (true) {
-                try {
-                    bidPriceOrder = scanner.nextDouble();
-                    scanner.nextLine();
-                    break;
-                } catch (Exception exception) {
-                    scanner.nextLine();
-                    System.out.print("Just number please : ");
-                }
-            }
-            if(bidPriceOrder < 0 ){
-                System.out.println("You must enter a price more than zero!");
-            }else
-                break;
-        }
-        return bidPriceOrder;
     }
 }

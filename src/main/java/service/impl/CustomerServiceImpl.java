@@ -13,4 +13,9 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Integer> impl
     private SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
 
     private CustomerRepositoryImpl customerRepository = new CustomerRepositoryImpl();
+
+    @Override
+    public Customer findByEmail(String email) {
+        return null;
+    }
 }

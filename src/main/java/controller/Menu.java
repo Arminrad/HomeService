@@ -4,6 +4,7 @@ import static controller.Gizmo.scanner;
 
 public class Menu {
     Utility utility = new Utility();
+    ProfessionalController professionalController = new ProfessionalController();
     public void mainMenu() {
         System.out.println("--------------------*** Welcome to HomeService Company ***--------------------");
         System.out.println("1.SignIn \n" +
@@ -16,7 +17,7 @@ public class Menu {
                 //signIn();
                 break;
             case 2:
-                utility.professionalSignUp();
+                professionalController.professionalSignUp();
                 break;
             case 3:
                 //customerSignUp();
