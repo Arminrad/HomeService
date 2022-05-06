@@ -4,12 +4,14 @@ import entities.Professional;
 import entities.Service;
 import entities.enumeration.UserStatus;
 import entities.enumeration.UserType;
+import service.impl.ProfessionalServiceImpl;
 
 import java.util.Date;
 import java.util.Set;
 
 public class ProfessionalController {
     private Utility utility = new Utility();
+    ProfessionalServiceImpl professionalService = new ProfessionalServiceImpl();
 
     public Professional professionalSignUp() {
         String firstName = utility.setFirstName();
@@ -25,6 +27,7 @@ public class ProfessionalController {
         String nationalCode = utility.setNationalCode();
         Set<Service> services = utility.setService();
         Professional professional = new Professional(firstName, lastName, email, password, signUpDate, balance, status, type, city, image, nationalCode, services);
+        professionalService.save(professional);
         return professional;
     }
 }

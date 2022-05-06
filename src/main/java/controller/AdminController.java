@@ -1,15 +1,10 @@
 package controller;
 
-import entities.Professional;
 import entities.Service;
 import entities.enumeration.UserStatus;
 import entities.enumeration.UserType;
 import service.impl.ServiceServiceImpl;
 import service.impl.UserServiceImpl;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 public class AdminController {
     private UserServiceImpl userService = new UserServiceImpl();

@@ -3,10 +3,13 @@ package controller;
 import static controller.Gizmo.scanner;
 
 public class Menu {
+
     Utility utility = new Utility();
     ProfessionalController professionalController = new ProfessionalController();
+
+
     public void mainMenu() {
-        System.out.println("--------------------*** Welcome to HomeService Company ***--------------------");
+        System.out.println("^^^^^^^^^^--------------------********** Welcome to HomeService Company **********--------------------^^^^^^^^^^");
         System.out.println("1.SignIn \n" +
                 "2.Professional SignUp \n" +
                 "3.Customer SignUp \n" +

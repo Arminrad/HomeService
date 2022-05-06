@@ -19,11 +19,9 @@ public class Utility {
     private Scanner scanner = new Scanner(System.in);
     private String firstName, lastName, nationalCode, password, categoryName,
             email, cityName, superCategoryName, answer, description, address;
-    private InvalidNameException invalidNameException = new InvalidNameException();
-    private InvalidNationalCodeException invalidNationalId = new InvalidNationalCodeException();
-    private InvalidPasswordException invalidPasswordException = new InvalidPasswordException();
+
     private CustomerServiceImpl customerService = new CustomerServiceImpl();
-    private ProfessionalServiceImpl expertService = new ProfessionalServiceImpl();
+    private ProfessionalServiceImpl professionalService = new ProfessionalServiceImpl();
     private ServiceServiceImpl serviceService = new ServiceServiceImpl();
 
 
@@ -71,7 +69,7 @@ public class Utility {
     public String setEmail() {
         while (true) {
             String email = regexAdder("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$", "Email", "Example: alirezaVk@gmail.com");
-            if (customerService.findByEmail(email) != null || expertService.findByEmail(email) != null) {
+            if (customerService.findByEmail(email) != null || professionalService.findByEmail(email) != null) {
                 System.out.println("Email address already exists!!!");
             } else return email;
         }
